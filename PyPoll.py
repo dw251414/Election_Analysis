@@ -24,6 +24,23 @@ candidate_options = []
 # 1. Declare the empty dictionary.
 candidate_votes = {}
 
+#When we loop through the vote counts, we can:
+# Use an if statement to check if the first vote count for a candidate is greater than zero.
+# If the statement is true, then that vote count will be equal to the "winning count."
+# At the same time, we can set that candidate's percentage of the vote equal to the "winning percentage."
+# Then we can select the candidate as the "winning candidate" from the candidate_options list.
+####FIRST WE NEED TO DECLARE VARs
+
+# Winning Candidate and Winning Count Tracker
+#Declare a variable that holds an empty string value for the winning candidate.
+winning_candidate = ""
+
+#Declare a variable for the "winning count" equal to zero
+winning_count = 0
+
+#Declare a variable for the "winning_percentage" equal to zero.
+winning_percentage = 0
+
 # Open the election results and read the file
 with open(file_to_load) as election_data:
 
@@ -108,6 +125,35 @@ for candidate_name in candidate_votes:
     # 3. Calculate the percentage of votes.
     vote_percentage = float(votes) / float(total_votes) * 100
 
+# To do: print out each candidate's name, vote count, and percentage of
+# votes to the terminal.
+    print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+
+      # Determine winning vote count and candidate
+    # Determine if the votes is greater than the winning count.
+    if (votes > winning_count) and (vote_percentage > winning_percentage):
+         # If true then set winning_count = votes and winning_percent =
+         # vote_percentage.
+         winning_count = votes
+         winning_percentage = vote_percentage
+         # And, set the winning_candidate equal to the candidate's name.
+         winning_candidate = candidate_name
+####
+winning_candidate_summary = (
+    f"-------------------------\n"
+    f"Winner: {winning_candidate}\n"
+    f"Winning Vote Count: {winning_count:,}\n"
+    f"Winning Percentage: {winning_percentage:.1f}%\n"
+    f"-------------------------\n")
+print(winning_candidate_summary)
+
+###Your results should tell you that Diane DeGette was the winner of the election with 73.8% of the vote and 272,892 votes.
+
+
 #Print each candidate and the percentage of votes using f-string formatting.
     # 4. Print the candidate name and percentage of votes.
-    print(f"{candidate_name}: received {vote_percentage:.2f}% of the vote.")
+    # print(f"{candidate_name}: received {vote_percentage:.2f}% of the vote.")
+
+#NEXT you will need to use a decision statement to compare the number of votes each candidate received.
+##final task is to determine the winning candidate by the number and percentage of votes.
+
