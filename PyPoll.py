@@ -18,6 +18,9 @@ total_votes = 0
 #The total_votes variable needs to be placed above the code where we open the file, using the with open() statement. 
 # We do this because every time we run the file, the total_votes variable must be set equal to zero.
 
+#Declare a new list, candidate_options = [] by adding it before the with open() statement in our script.
+candidate_options = []
+
 # Open the election results and read the file
 with open(file_to_load) as election_data:
 
@@ -29,7 +32,7 @@ with open(file_to_load) as election_data:
     headers = next(file_reader)
 
       #Each row in the CSV file was printed out as a list.
-    print(headers)
+   # print(headers)
 
 #programmatically count up all the votes cast in the election by amending the code below the for loop.
 #iterate through the file_reader variable and print each row, including the headers, or column names.
@@ -41,8 +44,28 @@ with open(file_to_load) as election_data:
         total_votes += 1
 
 # 3. Print the total votes.
-print(total_votes)
+#print(total_votes)
 
 #The total votes should be equal to the total number of rows in election_results.csv without the header: 369,711.
 #The last row number in the CSV file is 369,712, which includes the header. 
 
+#iterate through the rows in the CSV file
+#get the candidates from the "Candidate" column, and then add their names to a list.
+
+#Add the following code to get the candidate's name from the row within the for loop.
+        candidate_name = row[2]
+
+#Inside the for loop, we will need to check if the candidate has been added to the candidate_options list.
+        if candidate_name not in candidate_options:
+
+        # Add the candidate_name to the candidate_options list using the append() method.
+          candidate_options.append(candidate_name)
+
+#Add a print statement that is flush with the left margin to print out the candidate_options list
+print(candidate_options)
+
+#To get the unique names in the candidate_options list, we can use an if statement with the not in membership operator to check if the candidate has been added to the list. 
+# If the candidate's name has been added to the list, then the next time the candidate's name is found in a row using the for loop,
+# it will not be added to the list.
+
+ 
