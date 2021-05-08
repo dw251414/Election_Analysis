@@ -21,6 +21,9 @@ total_votes = 0
 #Declare a new list, candidate_options = [] by adding it before the with open() statement in our script.
 candidate_options = []
 
+# 1. Declare the empty dictionary.
+candidate_votes = {}
+
 # Open the election results and read the file
 with open(file_to_load) as election_data:
 
@@ -61,11 +64,28 @@ with open(file_to_load) as election_data:
         # Add the candidate_name to the candidate_options list using the append() method.
           candidate_options.append(candidate_name)
 
+          # 2. Begin tracking that candidate's vote count.
+          #we're setting each candidate's vote count to zero. 
+          #Once we set it to zero, then we can start tallying the votes for each candidate.
+          candidate_votes[candidate_name] = 0
+
+#To increment each candidate's vote count every time their name appears in a row, 
+#we need to move the vote counter inside the for loop and have it align with the if statement
+          # Add a vote to that candidate's count
+          #out of the if statement but aligned with the for loop
+        candidate_votes[candidate_name] += 1
+
+# Print the candidate vote dictionary.
+print(candidate_votes)
+
 #Add a print statement that is flush with the left margin to print out the candidate_options list
-print(candidate_options)
+# print(candidate_options)
 
 #To get the unique names in the candidate_options list, we can use an if statement with the not in membership operator to check if the candidate has been added to the list. 
 # If the candidate's name has been added to the list, then the next time the candidate's name is found in a row using the for loop,
 # it will not be added to the list.
 
- 
+ #Next is tocreate a dictionary where the key is each candidate's name and the vote count for that candidate is the value for the key.
+###after first run <<add votes to each candidate. Using the Python format for incrementing variables, 
+# we'll increment each candidate_votes[candidate_name] 
+# every time that name appears while we are iterating through each row.
